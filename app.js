@@ -31,6 +31,10 @@ app.get('/search', (req, res) => {
   res.render('index', { restaurantsInfo: filteredContent, keyword: keyword })
 })
 
+app.get('/restaurant/new', (req, res) => {
+  res.render('new')
+})
+
 app.listen(port, () => {
   console.log(`Listen on http://localhost:${port}`)
 })
