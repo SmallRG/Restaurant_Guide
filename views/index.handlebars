@@ -34,6 +34,13 @@
           </div>
         </div>
       </a>
+      <div class="card-footer d-flex justify-content-end flex-wrap">
+        <a href="/restaurants/{{this._id}}/edit"><button class="btn btn-link btn-sm">Edit</button></a>
+        <a href="/restaurants/{{this._id}}"><button class="btn btn-link btn-sm">Details</button></a>
+        <form action="/restaurants/{{this._id}}?_method=DELETE" method="POST">
+          <button type="submit" class="btn btn-danger btn-sm text-white">delete</button>
+        </form>
+      </div>
     </div>
     {{/each}}
   </div>
