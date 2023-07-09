@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express()
 const port = 3000
-const restaurantsList = require("./models/seeds/restaurant.json").results
+require('./config/mongoose')
+const restaurantsList = require("./restaurant.json").results
 
 // require express-handlebars here
 const exphbs = require('express-handlebars')
@@ -35,13 +36,12 @@ app.get('/restaurant/new', (req, res) => {
   res.render('new')
 })
 
-app.get('restarants/:restaurantId/edit', (req, res) => {
-const restaurantId = res.params.restaurantId
-restaurantsList.findById(restaurantId)
-.lean()
-.then(data => res.render('edit',{data:data}))
-.catch(err => console.log(err))
+app.get('/restaurants/:restaurantId/edit', (req, res) => {
+  const restaurantId = req.params.restaurantId
+  const restaurantInfo = restaurantsList.find(data => data.id === Number(restaurantId))
+  res.render('edit', { data: restaurantInfo })
 })
+
 
 app.listen(port, () => {
   console.log(`Listen on http://localhost:${port}`)
