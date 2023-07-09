@@ -35,6 +35,14 @@ app.get('/restaurant/new', (req, res) => {
   res.render('new')
 })
 
+app.get('restarants/:restaurantId/edit', (req, res) => {
+const restaurantId = res.params.restaurantId
+restaurantsList.findById(restaurantId)
+.lean()
+.then(data => res.render('edit',{data:data}))
+.catch(err => console.log(err))
+})
+
 app.listen(port, () => {
   console.log(`Listen on http://localhost:${port}`)
 })
